@@ -1,0 +1,30 @@
+<template>
+  <div>
+    <TodoHeader />
+    <TodoFooter />
+    <TodoList />
+    <TodoInput />
+  </div>
+</template>
+
+<script>
+import TodoHeader from "./components/TodoHeader.vue";
+import TodoFooter from "./components/TodoFooter.vue";
+import TodoList from "./components/TodoList.vue";
+import TodoInput from "./components/TodoInput.vue";
+
+export default {
+  components: {
+    TodoHeader: TodoHeader,
+    TodoFooter: TodoFooter,
+    TodoList: TodoList,
+    TodoInput: TodoInput,
+  },
+};
+</script>
+<style>
+body {
+  text-align: center;
+  background-color: #f6f6f6;
+}
+</style>
