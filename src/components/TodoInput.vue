@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo" />
-    <button @click="addTodo">add</button>
+    <input type="text" class="rounded w-52 py-1" v-model="newTodoItem" @keyup.enter="addTodo" />
+    <button @click="addTodo" class="bg-gray-400 px-3 py-1 rounded-sm ml-2">add</button>
   </div>
 </template>
 
