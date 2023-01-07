@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="space-y-5">
     <TodoHeader />
-    <TodoFooter />
-    <TodoList />
     <TodoInput />
+    <TodoList />
+    <TodoFooter />
   </div>
 </template>
 
