@@ -2,7 +2,7 @@
   <div class="flex justify-center">
     <ul class="space-y-2 w-72">
       <li class="bg-white h-10 px-4 py-1 rounded flex justify-between items-center shadow" v-for="(list, index) in todoList" :key="index" >
-        <input type="checkbox"  @click="toggleOnOff(list)">
+        <input type="checkbox"  @click="toggleOnOff(list, index)">
         <class class="mr-3" :class="{ 'line-through text-gray-400': list.completed }">{{ list.item }}</class>
         <button class="bg-red-400 text-white px-3 rounded" @click="deleteList(list.item, index)">Del</button>
       </li>
@@ -12,32 +12,15 @@
 
 <script>
 export default {
-  data: function () {
-    return {
-      todoList: [],
-    }
-  },
+  props: ['todoList'],
   methods: {
-    deleteList(list, index) { 
-      if (localStorage.getItem(list)) { 
-        localStorage.removeItem(list)
-        this.todoList.splice(index, 1)
-      }
+    deleteList(item, index) { 
+      this.$emit('deleteItem', item, index)
     },
-
-    toggleOnOff(list) { 
-      list.completed = !list.completed;
-      localStorage.removeItem(list.item)
-      localStorage.setItem(list.item, JSON.stringify(list))
+    toggleOnOff(item, index) { 
+      this.$emit('toggleItem', item, index)
     }
   },
-  created: function () {
-    if (localStorage.length > 0) { 
-      for (let i = 0; i < localStorage.length; i++) { 
-        console.log(localStorage.getItem(localStorage.key(i)))
-        this.todoList.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
-      }
-    }
-  }
+
 };
 </script>
