@@ -14,14 +14,14 @@ import TodoList from "./components/TodoList.vue";
 import TodoInput from "./components/TodoInput.vue";
 
 export default {
-  data: function(){
+  data(){
     return {
       todoList:[]
     }
   },
   methods: {
     addOneItem(todoItem) { 
-        let obj = { completed: false, item: todoItem };
+      const obj = { completed: false, item: todoItem };
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoList.push(obj);
     },
@@ -41,20 +41,19 @@ export default {
       this.todoList = [];
     }
   },
-  created: function () {
+  created() {
     if (localStorage.length > 0) { 
       for (let i = 0; i < localStorage.length; i++) { 
-        console.log(localStorage.getItem(localStorage.key(i)))
         this.todoList.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
       }
     }
   },
 
   components: {
-    TodoHeader: TodoHeader,
-    TodoFooter: TodoFooter,
-    TodoList: TodoList,
-    TodoInput: TodoInput,
+    TodoHeader,
+    TodoFooter,
+    TodoList,
+    TodoInput,
   },
 };
 </script>
