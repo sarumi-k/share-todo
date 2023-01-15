@@ -2,7 +2,7 @@
   <div class="flex justify-center">
     <ul class="space-y-4 w-72">
       <transition-group name="list">
-        <li class="bg-white h-10 px-4 py-1 rounded flex justify-between items-center shadow" v-for="(list, index) in todoList" :key="index" >
+        <li class="bg-white h-10 px-4 py-1 rounded flex justify-between items-center shadow" v-for="(list, index) in this.$store.state.todoList" :key="index" >
           <input type="checkbox"  @click="toggleOnOff(list, index)">
           <class class="mr-3" :class="{ 'line-through text-gray-400': list.completed }">{{ list.item }}</class>
           <button class="bg-red-400 text-white px-3 rounded" @click="deleteList(list.item, index)">Del</button>
@@ -14,13 +14,12 @@
 
 <script>
 export default {
-  props: ['todoList'],
   methods: {
     deleteList(item, index) { 
-      this.$emit('deleteItem', item, index)
+      this.$store.commit('deleteOneItem', {item, index})
     },
     toggleOnOff(item, index) { 
-      this.$emit('toggleItem', item, index)
+      this.$store.commit('toggleOneItem', {item, index})
     }
   },
 
